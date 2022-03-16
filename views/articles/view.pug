@@ -1,6 +1,7 @@
 extends ../layout
 
 block content
+    include ../mixins/comment
     div.container.blog
         div.content
             div.article-header-row
@@ -25,3 +26,7 @@ block content
                             textarea(placeholder="Your comment here..." required=true name="body" id="body" cols="80" rows="5")
                         div
                             button.buttom.primary(type="submit") Comment
+                ul.comment-list
+                    each comment in article.comments
+                        li
+                            +comment(comment)
