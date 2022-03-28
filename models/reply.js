@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
         body: DataTypes.STRING,
         commented_on: DataTypes.DATE,
         article_id: DataTypes.INTEGER,
-        parent_comment_id: DataTypes.INTEGER,
+
+               parent_comment_id: DataTypes.INTEGER,
         commentedAgo: {
             type: DataTypes.VIRTUAL,
             get(){
