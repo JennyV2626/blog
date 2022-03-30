@@ -5,6 +5,7 @@ const commentController = require('../controllers/commentController');
 const userController = require('../controllers/userController');
 const ensureUserAuthentication = require('../middleware/ensureUserAuthenticated.js');
 const userHasRole = require('../middleware/userHasRole');
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.redirect('/article');
@@ -27,5 +28,8 @@ router.post('/register', userController.register);
 router.get('/login', userController.renderLogin);
 router.post('/login', userController.login);
 router.get('/logout', userController.logout);
+
+router.get('/comment/:commentId/delete', ensureUserAuthentication, userHasRole('admin'), commentController.deleteComment);
+router.get('/comment/:commentId/reply/:replyId/delete', ensureUserAuthentication, userHasRole('admin'), commentController.deleteReply);
 
 module.exports = router;
